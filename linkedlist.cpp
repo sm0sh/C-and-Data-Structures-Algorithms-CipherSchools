@@ -40,47 +40,66 @@ void printlinkedlist(node *  head )
         cout<<temp->data<<" -->";
         temp = temp->next;
     }
+    cout<<endl;
+}
+
+void Insertatstart(node * &head, int data)
+{
+    node * temp = new node(data);
+
+    if(head==NULL)
+    {
+        head = temp; 
+        return;
+    } 
+
+    temp->next = head;  // Where temp is the new head and now, we need to assign the address of the old head to it
+    head = temp;
+
+}
+
+void Insertatend(node * &head, int data)
+{
+    node * temp = new node(data);
+
+    if(head==NULL)
+    {
+        head = temp; 
+        return;
+    }
+
+    node *end;
+    end = head;
+
+    while(end->next!=NULL)
+    {
+        end = end->next;
+    }
+
+    // After this while loop is complete, we have basically reached the end element of the linked list
+
+    end->next = temp;
 }
 
 int main()
 {
-
-
-    // Head of a linke list is nothing but a fancy trem to indicate the top or the first element of the linked list
+    // Head of a linked list is nothing but a fancy trem to indicate the top or the first element of the linked list
     node * head=NULL;
 
-    printlinkedlist(head);
-    cout<<endl;
+    
+    Insertatend(head,5);
+    Insertatend(head,7);
+    Insertatend(head,8);
 
-    node * node1 = new node(5);
-    head = node1;
-    printlinkedlist(head);
-    cout<<endl;
-    
-    node * node2 = new node(7);
-    node1->next = node2;  // The storing address of the first node which was initially pointing to NULL will now point to the address of the next node
-    printlinkedlist(head);
-    cout<<endl;
-    
-    node * node3 = new node(8);
-    node2->next = node3; 
-    printlinkedlist(head);
-    cout<<endl;
+    Insertatstart(head,3);
+    Insertatstart(head,2);
 
-    //printnode(node1);
-    //printnode(node2);
-    //printnode(node3);  
+    Insertatend(head,9);
+    Insertatend(head,10);
 
-    //printnode(node1);
-    //cout<<endl<<node2<<endl;
-    //printnode(node2);
-    //cout<<endl<<node3<<endl;
-    //printnode(node3);
-    //printnode(node1->next);  // node2 = node1->next
-    //printnode(node1->next->next);  // node 3 = node2->next = node1->next->next
-    
-    // Head of a linke list is nothing but a fancy trem to indicate the top or the first element of the linked list
-    
+    printlinkedlist(head);
+
+
 
     return 0;
 }
