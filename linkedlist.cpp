@@ -80,6 +80,28 @@ void Insertatend(node * &head, int data)
 
     end->next = temp;
 }
+void insertatmiddleafterwhichelement(node *& head, int location, int data)
+{
+    node *temp = new node(data);
+
+    node *var = head;
+
+    while(var->data!= location)
+    {
+        var = var->next;
+        if(var==NULL)
+        {
+            cout<<"The location does'nt exist, check the location again "<<endl;
+            return;
+        }
+    }
+
+    // Now var will have the node adress of the element at which the new data is going to be inserted
+
+    temp->next = var->next;
+    var->next = temp;
+
+}
 
 int main()
 {
@@ -96,6 +118,12 @@ int main()
 
     Insertatend(head,9);
     Insertatend(head,10);
+
+    printlinkedlist(head);
+
+    insertatmiddleafterwhichelement(head,3,4);
+    insertatmiddleafterwhichelement(head,5,6);
+    insertatmiddleafterwhichelement(head,100,101);
 
     printlinkedlist(head);
 
