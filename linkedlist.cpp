@@ -103,6 +103,40 @@ void insertatmiddleafterwhichelement(node *& head, int location, int data)
 
 }
 
+void deletenodeoflinkedlist(node *&head, int data)
+{
+    if(head->data == data)
+    {
+        cout<<"The head of the linked list is going to be deleted !! "<<endl;
+        head = head->next;
+        return;
+    }
+
+    node *temp;
+    node*prev;
+    temp = head;
+
+    while(temp->data!=data)
+    {
+        if(temp->next==NULL)
+        {
+          cout<<"The lement to be deleted does'nt exist"<<endl;
+          return;   
+        }
+        prev=temp;
+        temp = temp->next;
+    }
+
+    if(temp->next == NULL)
+    {
+        prev->next = NULL;
+        return;
+    }
+
+
+    prev->next = prev->next->next; 
+
+}
 int main()
 {
     // Head of a linked list is nothing but a fancy trem to indicate the top or the first element of the linked list
@@ -123,7 +157,16 @@ int main()
 
     insertatmiddleafterwhichelement(head,3,4);
     insertatmiddleafterwhichelement(head,5,6);
-    insertatmiddleafterwhichelement(head,100,101);
+    // insertatmiddleafterwhichelement(head,100,101);
+
+    printlinkedlist(head);
+
+    // Now I want to delete the elements 2, 10 and 6
+
+    deletenodeoflinkedlist(head,2);
+    deletenodeoflinkedlist(head,10);
+    deletenodeoflinkedlist(head,6);
+    deletenodeoflinkedlist(head,100);
 
     printlinkedlist(head);
 
